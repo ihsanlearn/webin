@@ -9,7 +9,7 @@ export async function POST(request: Request) {
 
     const data = await resend.emails.send({
       from: 'ambaweb Contact Form <noreply@iihn.fun>',
-      to: ['webin@iihn.fun'],
+      to: ['ambaweb@iihn.fun'],
       replyTo: email,
       subject: `New Inquiry: ${subject}`,
       html: `
