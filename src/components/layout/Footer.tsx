@@ -20,7 +20,7 @@ export default function Footer() {
   return (
     <>
       <footer className="bg-background border-t border-white/5 py-12 px-6">
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
           <div className="space-y-4">
             <h3 className="text-xl font-bold lowercase text-white">ambaweb</h3>
             <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
@@ -34,16 +34,6 @@ export default function Footer() {
               <li><Link href="#" className="hover:text-primary transition-colors">Portfolio</Link></li>
               <li><Link href="#" className="hover:text-primary transition-colors">Landing Page</Link></li>
               <li><Link href="#" className="hover:text-primary transition-colors">Company Profile</Link></li>
-            </ul>
-          </div>
-
-          <div className="space-y-4">
-            <h4 className="text-white font-semibold">{t.footer.company}</h4>
-            <ul className="space-y-2 text-sm text-gray-400">
-              <li><Link href="#about" className="hover:text-primary transition-colors">{t.nav.about}</Link></li>
-              <li><Link href="#portfolio" className="hover:text-primary transition-colors">{t.nav.portfolio}</Link></li>
-              <li><Link href="#" className="hover:text-primary transition-colors">Careers</Link></li>
-              <li><Link href="#contact" className="hover:text-primary transition-colors">{t.nav.contact}</Link></li>
             </ul>
           </div>
 

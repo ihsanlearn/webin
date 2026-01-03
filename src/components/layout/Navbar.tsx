@@ -9,10 +9,9 @@ import { useLanguage } from "@/context/LanguageContext";
 import { type Language } from "@/lib/translations";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,13 +20,6 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const navLinks = [
-    { name: t.nav.services, href: "#services" },
-    { name: t.nav.about, href: "#about" },
-    { name: t.nav.portfolio, href: "#portfolio" },
-    { name: t.nav.contact, href: "#contact" },
-  ];
 
   const languages: { code: Language; label: string }[] = [
     { code: "en", label: "English" },
@@ -51,18 +43,8 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop Menu */}
+        {/* Desktop Language Selector */}
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="text-sm font-medium text-gray-400 hover:text-primary transition-colors"
-            >
-              {link.name}
-            </Link>
-          ))}
-          
           <div className="relative">
             <button
               onClick={() => setIsLangOpen(!isLangOpen)}
@@ -98,16 +80,9 @@ export default function Navbar() {
               )}
             </AnimatePresence>
           </div>
-
-          <Link
-            href="#contact"
-            className="px-5 py-2.5 bg-primary text-white text-sm font-medium rounded-full hover:bg-primary/90 transition-all hover:shadow-[0_0_20px_rgba(99,102,241,0.5)]"
-          >
-            {t.nav.started}
-          </Link>
         </div>
 
-        {/* Mobile Toggle */}
+        {/* Mobile Language Selector */}
         <div className="flex items-center gap-4 md:hidden">
          <div className="relative">
             <button
@@ -142,47 +117,8 @@ export default function Navbar() {
               )}
             </AnimatePresence>
          </div>
-          
-          <button
-            className="text-gray-300 hover:text-white"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <X /> : <Menu />}
-          </button>
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background/95 backdrop-blur-xl border-b border-white/10 overflow-hidden"
-          >
-            <div className="flex flex-col p-6 gap-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="text-lg font-medium text-gray-300 hover:text-primary"
-                >
-                  {link.name}
-                </Link>
-              ))}
-              <Link
-                href="#contact"
-                onClick={() => setIsOpen(false)}
-                className="mt-4 w-full py-3 bg-primary text-center text-white font-bold rounded-lg"
-              >
-                {t.nav.started}
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </nav>
   );
 }
